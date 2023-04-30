@@ -6,11 +6,14 @@ async function listMarkdownFiles() {
 
   try {
     const files = await fs.readdir(directoryPath);
-    const markdownFiles = files.filter((file) => path.extname(file) === '.md');
-    console.log(markdownFiles);
-
     const currentDirectory = path.basename(process.cwd());
     const newFilePath = path.join(directoryPath, `${currentDirectory}.md`);
+
+    const markdownFiles = files.filter((file) => {
+      return path.extname(file) === '.md' && file !== newFilePath;
+    });
+
+    console.log(markdownFiles);
 
     const fileLinks = markdownFiles.map((file) => {
       const fileTitle = path.basename(file, '.md');
