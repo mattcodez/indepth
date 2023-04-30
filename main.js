@@ -9,7 +9,7 @@ async function listMarkdownFiles() {
     const markdownFiles = files.filter((file) => path.extname(file) === '.md');
     console.log(markdownFiles);
 
-    const currentDirectory = path.basename(directoryPath);
+    const currentDirectory = path.basename(process.cwd());
     const newFilePath = path.join(directoryPath, `${currentDirectory}.md`);
 
     const fileLinks = markdownFiles.map((file) => {
