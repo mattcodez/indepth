@@ -20,7 +20,8 @@ async function listMarkdownFiles() {
     for (const file of markdownFiles) {
       const filePath = path.join(directoryPath, file);
       const fileContents = await fs.readFile(filePath, 'utf-8');
-      const fileTitle = fileContents.match(/^#\s+(.*)$/m)[1];
+      const fileTitleMatch = fileContents.match(/^#\s+(.*)$/m);
+      const fileTitle = fileTitleMatch ? fileTitleMatch[1] : path.parse(file).name;
       const escapedFileName = fileTitle.replace(/ /g, '%20');
       const fileLink = `- [${fileTitle}](${escapedFileName}.md)`;
       fileLinks.push(fileLink);
