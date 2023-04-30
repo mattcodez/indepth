@@ -17,7 +17,9 @@ async function listMarkdownFiles() {
       return `- [${fileTitle}](${file})`;
     }).join('\n');
 
-    await fs.writeFile(newFilePath, fileLinks, { flag: 'wx' });
+    const fileContents = `# ${currentDirectory}\n\n${fileLinks}`;
+
+    await fs.writeFile(newFilePath, fileContents);
     console.log(`File '${newFilePath}' has been created with the following links:\n${fileLinks}`);
   } catch (err) {
     console.log('Unable to scan directory: ' + err);

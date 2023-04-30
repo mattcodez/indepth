@@ -3,13 +3,13 @@
 # ToDo
 ## Next
 - [ ] Generate simple ToC
-  - [ ] Default to all *.md files in current folder
-  - [ ] Build top section with name of current folder
+  - [X] ~~*Default to all *.md files in current folder*~~ [2023-04-30]
+  - [ ] Build top `#` section with name of current folder
   - [ ] Each file get's named by top `#` section in file
     - If none present, use filename
   - Create in new file
-    - File is named same as folder
-    - Overrite existing contents if ran again (allows for updating)
+    - [X] ~~*File is named same as folder*~~ [2023-04-30]
+    - [ ] Overrite existing contents if ran again (allows for updating)
 ## Later
 - CLI command
   - add flags for features
@@ -20,3 +20,4 @@
 - [ ] Print date from metadata or filesystem meta with the item name
 - [ ] Specify output filename
 - [ ] Feature to drill down and generate links to other headings in doc, initially all top single `#` levels
+## Completed
