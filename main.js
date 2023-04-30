@@ -17,7 +17,8 @@ async function listMarkdownFiles() {
 
     const fileLinks = markdownFiles.map((file) => {
       const fileTitle = path.basename(file, '.md');
-      return `- [${fileTitle}](${file})`;
+      const escapedFileName = fileTitle.replace(/ /g, '%20');
+      return `- [${fileTitle}](${escapedFileName}.md)`;
     }).join('\n');
 
     const fileContents = `# ${currentDirectory}\n\n${fileLinks}`;
