@@ -1,4 +1,3 @@
-// get all *.md files in current directory
 const fs = require('fs').promises;
 const path = require('path');
 
@@ -7,16 +6,22 @@ async function listMarkdownFiles() {
 
   try {
     const files = await fs.readdir(directoryPath);
-    files.forEach((file) => {
-      if (path.extname(file) === '.md') {
-        console.log(file);
-      }
-    });
+    const markdownFiles = files.filter((file) => path.extname(file) === '.md');
+    console.log(markdownFiles);
+
+    const currentDirectory = path.basename(directoryPath);
+    const newFilePath = path.join(directoryPath, `${currentDirectory}.md`);
+
+    const fileLinks = markdownFiles.map((file) => {
+      const fileTitle = path.basename(file, '.md');
+      return `- [${fileTitle}](${file})`;
+    }).join('\n');
+
+    await fs.writeFile(newFilePath, fileLinks, { flag: 'wx' });
+    console.log(`File '${newFilePath}' has been created with the following links:\n${fileLinks}`);
   } catch (err) {
     console.log('Unable to scan directory: ' + err);
   }
 }
 
 listMarkdownFiles();
-// get name of current directory
-// build MD with links based only on filename for now
