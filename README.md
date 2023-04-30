@@ -4,12 +4,12 @@
 ## Next
 - [ ] Generate simple ToC
   - [X] ~~*Default to all *.md files in current folder*~~ [2023-04-30]
-  - [ ] Build top `#` section with name of current folder
+  - [X] ~~*Build top `#` section with name of current folder*~~ [2023-04-30]
   - [ ] Each file get's named by top `#` section in file
     - If none present, use filename
   - Create in new file
     - [X] ~~*File is named same as folder*~~ [2023-04-30]
-    - [ ] Overrite existing contents if ran again (allows for updating)
+    - [X] ~~*Overrite existing contents if ran again (allows for updating)*~~ [2023-04-30]
 ## Later
 - CLI command
   - add flags for features
