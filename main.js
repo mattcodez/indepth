@@ -15,18 +15,25 @@ async function listMarkdownFiles() {
 
     console.log(markdownFiles);
 
-    const fileLinks = markdownFiles.map((file) => {
-      const fileTitle = path.basename(file, '.md');
-      const escapedFileName = fileTitle.replace(/ /g, '%20');
-      return `- [${fileTitle}](${escapedFileName}.md)`;
-    }).join('\n');
+    const fileLinks = [];
 
-    const fileContents = `# ${currentDirectory}\n\n${fileLinks}`;
+    for (const file of markdownFiles) {
+      const filePath = path.join(directoryPath, file);
+      const fileContents = await fs.readFile(filePath, 'utf-8');
+      const fileTitle = fileContents.match(/^#\s+(.*)$/m)[1];
+      const escapedFileName = fileTitle.replace(/ /g, '%20');
+      const fileLink = `- [${fileTitle}](${escapedFileName}.md)`;
+      fileLinks.push(fileLink);
+    }
+
+    const fileLinksString = fileLinks.join('\n');
+    const fileContents = `# ${currentDirectory}\n\n${fileLinksString}`;
 
     await fs.writeFile(newFilePath, fileContents);
-    console.log(`File '${newFilePath}' has been created with the following links:\n${fileLinks}`);
+    console.log(`File '${newFilePath}' has been created with the following links:\n${fileLinksString}`);
   } catch (err) {
     console.log('Unable to scan directory: ' + err);
+    console.error(err.stack);
   }
 }
 
