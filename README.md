@@ -2,10 +2,10 @@
 
 # ToDo
 ## Next
-- 
+- [ ] Add some tests
 
 ## Later
-- CLI command
+- [ ] CLI command
   - add flags for features
 - [ ] recursive setting with optional depth for finding MD files
 - [ ] use an existing file with section names where the name is a used tag and all files with those tags get listed under the section
