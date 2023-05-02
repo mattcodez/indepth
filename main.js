@@ -39,3 +39,6 @@ async function listMarkdownFiles() {
 }
 
 listMarkdownFiles();
+module.exports = {
+    listMarkdownFiles
+  };
